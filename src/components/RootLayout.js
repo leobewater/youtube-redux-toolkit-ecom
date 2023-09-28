@@ -4,8 +4,8 @@ import NavbarPanel from './NavbarPanel';
 const RootLayout = () => {
   return (
     <>
-          <NavbarPanel />
-          
+      <NavbarPanel />
+
       <main>
         <Outlet />
       </main>
