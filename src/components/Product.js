@@ -4,6 +4,7 @@ import Card from 'react-bootstrap/Card';
 import { useDispatch, useSelector } from 'react-redux';
 import { add } from '../store/cartSlice';
 import { getProducts } from '../store/productSlice';
+import StatusCode from '../utils/StatusCode';
 
 const Product = () => {
   const dispatch = useDispatch();
@@ -50,9 +51,9 @@ const Product = () => {
   return (
     <>
       <h1>Product Dashboard</h1>
-      {status === 'loading' && <div>Loading Products...</div>}
-      {status === 'error' && <div>Error loading products from API</div>}
-      {status === 'idle' && products.length > 0 && (
+      {status === StatusCode.LOADING && <div>Loading Products...</div>}
+      {status === StatusCode.ERROR && <div>Error loading products from API</div>}
+      {status === StatusCode.IDLE && products.length > 0 && (
         <div className="row">{cards}</div>
       )}
     </>
