@@ -8,7 +8,7 @@ import { getProducts } from '../store/productSlice';
 const Product = () => {
   const dispatch = useDispatch();
   // const [products, setProducts] = useState([]);
-  const { data: products } = useSelector((state) => state.products);
+  const { data: products, status } = useSelector((state) => state.products);
 
   useEffect(() => {
     // dispatch an action to fetchProducts
@@ -50,7 +50,11 @@ const Product = () => {
   return (
     <>
       <h1>Product Dashboard</h1>
-      <div className="row">{cards}</div>
+      {status === 'loading' && <div>Loading Products...</div>}
+      {status === 'error' && <div>Error loading products from API</div>}
+      {status === 'idle' && products.length > 0 && (
+        <div className="row">{cards}</div>
+      )}
     </>
   );
 };
